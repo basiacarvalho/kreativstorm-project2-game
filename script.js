@@ -1,8 +1,7 @@
 const styleForWelcomeMessage =
-  'color:blue; font-family:monospace; font-size: 16px; font-weight: bold;';
+  "color:blue; font-family:monospace; font-size: 16px; font-weight: bold;";
 
-const welcomeMessage = 
-`
+const welcomeMessage = `
 
 
 
@@ -11,9 +10,10 @@ const welcomeMessage =
 %c__________________________________________________________________
 
         ~~ Welcome to the "Rock, Paper, Scissors" game! ~~
-__________________________________________________________________`; 
+__________________________________________________________________`;
 
-const styleForVillainIntro = 'color:#966919; font-family:monospace; font-size: 16px; font-weight: bold;';
+const styleForVillainIntro =
+  "color:#966919; font-family:monospace; font-size: 16px; font-weight: bold;";
 
 const villainIntro = `
 %cHello there, my name is @$%!#(*), but you can call me TECH.
@@ -21,9 +21,9 @@ But you already know that don\'t you?
 You are here to stop me from taking over the WWW.
 Well for that you will have to beat me in a game!
 
-`
+`;
 
-const styleForGameInstruction = 'font-size: 14px; font-weight: bold;'
+const styleForGameInstruction = "font-size: 14px; font-weight: bold;";
 
 const gameInstruction = `%c//////////////////////////////////////////////////////////////////////////////////////////
 
@@ -60,18 +60,6 @@ Good luck! You will need it! Muahahahahahaha
 //////////////////////////////////////////////////////////////////////////////////////////
 `;
 
-alert(`Welcome to the "Rock, Paper, Scissors" game! Let's play!`);
-alert(`Please read the game instruction which will be displayed in the console after you click "OK"`);
-console.log(welcomeMessage, styleForWelcomeMessage);
-console.log(villainIntro, styleForVillainIntro);
-console.log(gameInstruction, styleForGameInstruction);
-setTimeout(() => {
-  game();
-}, 0);
-
-let playerScore = 0;
-let computerScore = 0;
-
 function game() {
   let gameCanceled = false;
   for (let i = 0; i < 5; i++) {
@@ -83,21 +71,23 @@ function game() {
     }
     console.log(
       `Round nr ${i + 1}  Your selection: ${playerSelection} /` +
-      `AI selection: ${computerSelection}`
+        `AI selection: ${computerSelection}`
     );
     const result = playRound(playerSelection, computerSelection);
     updateScores(result);
-    console.log(`Your score: ${playerScore}         AI score: ${computerScore}`);
+    console.log(
+      `Your score: ${playerScore}         AI score: ${computerScore}`
+    );
     console.log(
       "------------------------------------------------------------------------------------------"
     );
-  } 
-  
+  }
+
   if (!gameCanceled) {
     if (playerScore > computerScore) {
       alert(`~ I\'ll be back!!!
       Your score: ${playerScore}         AI score: ${computerScore}`);
-    } else if(playerScore < computerScore) {
+    } else if (playerScore < computerScore) {
       alert(`~ Don\'t worry! I will take great care of your data. Muahahaha
       Your score: ${playerScore}         AI score: ${computerScore}`);
     } else {
@@ -107,7 +97,7 @@ function game() {
     alert(`~ Thank you for the game!`);
     setTimeout(() => {
       terminateOrContinueGame();
-    }, 0)
+    }, 0);
   }
 }
 
@@ -119,11 +109,13 @@ function computerPlay() {
 
 function obtainPlayerSelection() {
   let playerChoice = null;
-  
+
   do {
     playerChoice = validatePlayerSelection();
     if (playerChoice === null) {
-      alert("Please my comrade, you know better than try to fool me! Try again...");
+      alert(
+        "Please my comrade, you know better than try to fool me! Try again..."
+      );
     }
   } while (playerChoice === null);
 
@@ -132,7 +124,7 @@ function obtainPlayerSelection() {
 
 function validatePlayerSelection() {
   const playerInput = prompt(
-    "So who\'s gonna represent you?  rock,  paper or  scissors?"
+    "So who's gonna represent you?  rock,  paper or  scissors?"
   );
   if (playerInput === null) {
     if (confirm("Are you sure you want to quit the game?")) {
@@ -159,13 +151,13 @@ function playRound(playerSelection, computerSelection) {
     (playerSelection === "scissors" && computerSelection === "paper")
   ) {
     console.log(
-      `\n%cResult: You win. ${selectUserWinsMessage()}\n`, 
+      `\n%cResult: You win. ${selectUserWinsMessage()}\n`,
       "font-size: 13px; font-weight:bold; color:green"
     );
     return 1;
   } else {
     console.log(
-      `\n%cResult: You lose. ${selectComputerWinsMessage()}\n`, 
+      `\n%cResult: You lose. ${selectComputerWinsMessage()}\n`,
       "font-size: 13px; font-weight:bold; color:red"
     );
     return -1;
@@ -174,35 +166,45 @@ function playRound(playerSelection, computerSelection) {
 
 function selectUserWinsMessage() {
   const userWinsMessages = [
-    "Lucky guess...", "Are you reading my code?", "You did it! How?!!!",
-    "Victory! Somehow!", "Congratulations! I don't understand how either...",
-    "Could you be more irritant?!"
+    "Lucky guess...",
+    "Are you reading my code?",
+    "You did it! How?!!!",
+    "Victory! Somehow!",
+    "Congratulations! I don't understand how either...",
+    "Could you be more irritant?!",
   ];
   return userWinsMessages[Math.floor(Math.random() * userWinsMessages.length)];
 }
 
 function selectComputerWinsMessage() {
   const computerWinsMessages = [
-    "Point for me!", "Are you even trying?", "Don't give up!", "Try harder.",
-    "Am I the only one playing here?", "Luck is not on your side! Hahahaha",
-    "Look at that! One more for me. Hahahaha", "Maybe next time." 
+    "Point for me!",
+    "Are you even trying?",
+    "Don't give up!",
+    "Try harder.",
+    "Am I the only one playing here?",
+    "Luck is not on your side! Hahahaha",
+    "Look at that! One more for me. Hahahaha",
+    "Maybe next time.",
   ];
-  return computerWinsMessages[Math.floor(Math.random() * computerWinsMessages.length)];
+  return computerWinsMessages[
+    Math.floor(Math.random() * computerWinsMessages.length)
+  ];
 }
 
 function updateScores(result) {
   switch (result) {
-      case 0:
-        break;
-      case 1:
-        playerScore++;
-        break;
-      case -1:
-        computerScore++;
-        break;
-      default:
-        console.log("Upsss, something went terribly wrong!");
-    }
+    case 0:
+      break;
+    case 1:
+      playerScore++;
+      break;
+    case -1:
+      computerScore++;
+      break;
+    default:
+      console.log("Upsss, something went terribly wrong!");
+  }
 }
 
 function terminateOrContinueGame() {
@@ -220,3 +222,17 @@ function terminateOrContinueGame() {
     game();
   }
 }
+
+alert(`Welcome to the "Rock, Paper, Scissors" game! Let's play!`);
+alert(
+  `Please read the game instruction which will be displayed in the console after you click "OK"`
+);
+console.log(welcomeMessage, styleForWelcomeMessage);
+console.log(villainIntro, styleForVillainIntro);
+console.log(gameInstruction, styleForGameInstruction);
+setTimeout(() => {
+  game();
+}, 0);
+
+let playerScore = 0;
+let computerScore = 0;
